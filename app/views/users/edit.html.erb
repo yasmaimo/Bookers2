@@ -1,4 +1,15 @@
 <div class="edit-container">
+	<% if @user.errors.any? %>
+		<div class="alert alert-danger mt-4">
+			<h2><%= pluralize(@user.errors.count, "error") %></h2>
+			<ul>
+			<% @user.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+	<% end %>
+			</ul>
+		</div>
+	<% end %>
+
 	<p class="h1 font-weight-bold text-center my-5 text-secondary">Editing Profile</p>
 	<div class="form-group text-center">
 		<%= attachment_image_tag @user, :profile_image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg" %>
