@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Bookers2</title>
+	<%= csrf_meta_tags %>
+
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<header class="bg-info">
+	<div class="container">
+		<div class="row">
+			<div class="col-4">
+				<h1 class="header-title">Bookers</h1>
+			</div>
+
+			<div class="col-8">
+			<% if user_signed_in? %>
+				<nav>
+					<ul class="nav justify-content-end">
+						<li class="bg-dark nav-item nav-li"><%= link_to 'Home', user_path(current_user.id) %></li>
+						<li class="bg-danger nav-item nav-li"><%= link_to "Users", users_path %></li>
+						<li class="bg-dark nav-item nav-li"><%= link_to "Books", post_books_path %></li>
+						<li class="bg-danger nav-item nav-li"><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+					</ul>
+				</nav>
+
+			<% else %>
+				<nav>
+					<ul class="nav justify-content-end">
+						<li class="bg-dark nav-item nav-li"><%= link_to "Home", top_path %></li>
+						<li class="bg-danger nav-item nav-li"><%= link_to "About", top_path %></li>
+						<li class="bg-dark nav-item nav-li"><%= link_to "sign up", new_user_registration_path %></li>
+						<li class="bg-danger nav-item nav-li"><%= link_to "login", new_user_session_path %></li>
+					</ul>
+				</nav>
+			<% end %>
+			</div>
+		</div>
+	</div>
+</header>
+
+<body>
+
+    <%= yield %>
+
+</body>
+
+</html>
