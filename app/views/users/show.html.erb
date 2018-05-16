@@ -4,7 +4,11 @@
 
 <div class="container mw-100">
 	<div class="row">
-		<%= render 'list/list', {post: @post, user: @user} %>
+		<% if @user.id == current_user.id %>
+			<%= render 'list/list', {post: @post, user: current_user} %>
+		<% else %>
+			<%= render 'list/list', {post: @post, user: @user} %>
+		<% end %>
 
 		<div class="mb-4 pr-4 col-9">
 			<p class="h2 col-9 text-center text-secondary">Books</p>

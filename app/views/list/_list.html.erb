@@ -1,8 +1,6 @@
 <div class="mb-4 pl-4 col-3">
-	<div>
-		<%= attachment_image_tag user, :profile_image, :fill, fallback: "no_image.jpg", :size =>'100x100' %>
-	</div>
 	<p class="h2 text-center text-secondary">User info</p>
+	<%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg",:size =>'100x100' %>
 	<div class="mb-2">
 		<table class="table">
 			<tr>
@@ -15,7 +13,7 @@
 			</tr>
 		</table>
 	</div>
-	<p><%= link_to "ユーザー編集", edit_user_path(user), class: "btn btn-success text-center" %></p>
+	<p><%= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-success text-center" %></p>
 	<p class="h2 text-center text-secondary">NewBook</p>
 	<div class="form-group text-center">
 		<%= form_for(post) do |f| %>
