@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :index, :edit, :update]
 
-  resources :post_books, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+  resources :post_books, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+  	resource :post_comments, only: [:create, :destroy]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

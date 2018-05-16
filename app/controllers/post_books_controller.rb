@@ -53,6 +53,8 @@ class PostBooksController < ApplicationController
   def show
     @post = PostBook.new
     @post_book = PostBook.find(params[:id])
+    #@post_comments = PostComment.find(params[:id])
+    @post_comment = PostComment.new
   end
 
   private
@@ -63,5 +65,9 @@ class PostBooksController < ApplicationController
 
   def post_book_params
     params.require(:post_book).permit(:title, :body, :user_id)
+  end
+
+  def post_comment_params
+    params.require(:post_comment).permit(:user_id, :post_book_id, :comment)
   end
 end

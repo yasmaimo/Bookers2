@@ -1,19 +1,25 @@
 <div class="mb-4 pl-4 col-3">
 	<p class="h2 text-center text-secondary">User info</p>
-	<%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg",:size =>'100x100' %>
+	<div class="text-center my-3">
+		<%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", class:"text-center rounded-circe mw-100" %>
+	</div>
 	<div class="mb-2">
-		<table class="table">
+		<table class="table ta info-table">
 			<tr>
-				<td>name</td>
-				<td><%= user.name %></td>
+				<th class="bg-secondary rounded-top text-white">name</th>
 			</tr>
 			<tr>
-				<td>introduction</td>
-				<td><%= user.introduction %></td>
+				<td class="bg-light text-dark"><%= user.name %></td>
+			</tr>
+			<tr>
+				<th class="bg-secondary text-white">introduction</th>
+			</tr>
+			<tr>
+				<td class="bg-light rounded_bottom text-dark"><%= user.introduction %></td>
 			</tr>
 		</table>
 	</div>
-	<p><%= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-success text-center" %></p>
+	<p class="text-center"><%= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-outline-secondary text-center" %></p>
 	<p class="h2 text-center text-secondary">NewBook</p>
 	<div class="form-group text-center">
 		<%= form_for(post) do |f| %>

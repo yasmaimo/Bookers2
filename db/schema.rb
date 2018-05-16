@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180514091626) do
+ActiveRecord::Schema.define(version: 20180516044013) do
 
   create_table "post_books", force: :cascade do |t|
     t.text "title"
@@ -45,7 +45,8 @@ ActiveRecord::Schema.define(version: 20180514091626) do
     t.datetime "updated_at", null: false
     t.text "introduction"
     t.string "profile_image_id"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.text "item"
+    t.index ["item"], name: "index_users_on_item", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

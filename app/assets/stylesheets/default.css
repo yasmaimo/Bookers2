@@ -10,9 +10,14 @@ a {
 	text-decoration: none;
 }
 
+a:link {
+	color : #000000;
+}
+
 .nav-li {
 	list-style: none;
-	line-height: 54px;
+	line-height: 70px;
+	padding: 0 15px;
 }
 
 header {
@@ -62,6 +67,12 @@ body {
 .book-table {
 	width: 100%;
 	table-layout: fixed;
+}
+
+.info-table {
+	width: 100%;
+	table-layout: fixed;
+	word-wrap:break-word;
 }
 
 .columm-1 {

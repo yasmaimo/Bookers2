@@ -11,20 +11,25 @@
 		<% end %>
 
 		<div class="mb-4 pr-4 col-9">
-			<p class="h2 col-9 text-center text-secondary">Books</p>
+			<% if @user.id == current_user.id %>
+				<p class="h2 col-9 text-center text-secondary">My books</p>
+			<% else %>
+				<p class="h2 col-9 text-center text-secondary">Books</p>
+			<% end %>
+			
 			<table class="table table-hover book-table">
 				<thead>
 					<tr class="bg-info text-white">
-						<th class="columm-1">title</th>
-						<th class="columm-2">body</th>
-						<th class="columm-3">date</th>
+						<th class="columm-1 text-white">title</th>
+						<th class="columm-2 text-white">body</th>
+						<th class="columm-3 text-white">date</th>
 					</tr>
 				</thead>
 
 				<% @post_books.each do |post_book| %>
 				<tbody>
 					<tr class="small">
-						<td class="text-truncate columm-1"><%= post_book.title %></td>
+						<td class="text-truncate columm-1"><%= link_to post_book.title, post_book_path(@user) %></td>
 						<td class="text-truncate columm-2"><%= post_book.body %></td>
 						<td class="text-truncate columm-3"><%= post_book.created_at.strftime('%Y/%m/%d') %></td>
 					</tr>
