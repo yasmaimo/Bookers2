@@ -2,7 +2,7 @@ class PostBooksController < ApplicationController
   before_action :authenticate_user!
 
   def after_sign_in_path_for(resource)
-     users_show_path
+     user_path
   end
 
   def after_sign_out_path_for(resource)
@@ -14,6 +14,16 @@ class PostBooksController < ApplicationController
     @post_books = PostBook.all
   end
 
+  def edit
+    @post_book = PostBook.find(params[:id])
+    if @post_book.user.id == current_user.id
+      render 'edit'
+    else
+      redirect_to user_path(current_user.id)
+    end
+
+  end
+
   def create
     @post_book = PostBook.new(post_book_params)
     @post_book.user_id = current_user.id
@@ -21,9 +31,22 @@ class PostBooksController < ApplicationController
     redirect_to post_books_path
   end
 
+  def update
+    post_book = PostBook.find(params[:id])
+    post_book.update(post_book_params)
+    redirect_to post_book_path(post_book)
+    flash[:updated] = "Book was successfully updated."
+  end
+
+  def destroy
+    post_book = PostBook.find(params[:id])
+    post_book.destroy
+    redirect_to post_books_path
+    flash[:destroyed] = "Book was successfully destroyed."
+  end
+
   def index
     @post_books = PostBook.all
-
     @post = PostBook.new
   end
 
@@ -35,9 +58,8 @@ class PostBooksController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image)
+    params.require(:user).permit(:name, :introduction, :profile_image, :user_id)
   end
-
 
   def post_book_params
     params.require(:post_book).permit(:title, :body, :user_id)

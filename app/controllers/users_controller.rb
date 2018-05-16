@@ -2,14 +2,6 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!
 
-  def after_sign_in_path_for(resource)
-     users_show_path
-  end
-
-  def after_sign_out_path_for(resource)
-     top_path
-  end
-
   def index
   	@users = User.all
     @post = PostBook.new
