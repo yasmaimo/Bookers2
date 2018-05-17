@@ -12,11 +12,11 @@
 
 		<div class="mb-4 pr-4 col-9">
 			<% if @user.id == current_user.id %>
-				<p class="h2 col-9 text-center text-secondary">My books</p>
+				<p class="h2 col-9 text-center text-secondary"><i class="fa fa-book mr-1"></i>My books</p>
 			<% else %>
-				<p class="h2 col-9 text-center text-secondary">Books</p>
+				<p class="h2 col-9 text-center text-secondary"><i class="fa fa-book mr-1"></i>Books</p>
 			<% end %>
-			
+
 			<table class="table table-hover book-table">
 				<thead>
 					<tr class="bg-info text-white">

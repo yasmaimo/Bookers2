@@ -8,15 +8,23 @@ class UsersController < ApplicationController
   end
 
   def show
-   	@user = User.find(params[:id])
-  	@post_book = @user.post_books.page(params[:page])
-  	@post = PostBook.new
+    if User.exists?(params[:id])
+     	@user = User.find(params[:id])
+    	@post_book = @user.post_books.page(params[:page])
+    	@post = PostBook.new
+    else
+      redirect_to user_path(current_user.id)
+    end
   end
 
   def edit
-    @user = User.find(params[:id])
-    if @user.id != current_user.id
-      redirect_to edit_user_path(current_user.id)
+    if User.exists?(params[:id])
+      @user = User.find(params[:id])
+      if @user.id != current_user.id
+        redirect_to edit_user_path(current_user.id)
+      end
+    else
+      redirect_to user_path(current_user.id)
     end
   end
 

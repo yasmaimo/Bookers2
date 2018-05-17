@@ -8,10 +8,10 @@
 		<%= render 'list/list', {post: @post, user: current_user} %>
 
 		<div class="mb-4 pr-4 col-9">
-			<p class="h2 col-9 text-center text-secondary">All user books</p>
+			<p class="h2 col-9 text-center text-secondary"><i class="fa fa-book mr-1"></i>All user books</p>
 			<table class="table table-hover book-table">
 				<thead>
-					<tr class="bg-success text-white">
+					<tr class="bg-info text-white">
 						<th class="columm-1 text-white">image</th>
 						<th class="columm-2 text-white">name</th>
 						<th class="columm-3 text-white"></th>
@@ -21,7 +21,7 @@
 				<% @post_books.each do |book| %>
 				<tbody>
 					<tr class="small">
-						<td class="text-truncate columm-1"><%= attachment_image_tag book.user, :profile_image, fallback: "no_image.jpg", :size =>'40x40' %></td>
+						<td class="text-truncate columm-1"><%= attachment_image_tag book.user, :profile_image, fallback: "no_image.jpg", class: "mw-100" ,style: "width: 40px;" %></td>
 						<td class="text-truncate columm-2"><%= link_to book.title, post_book_path(book) %></td>
 						<td class="text-truncate columm-3"><%= book.body %></td>
 					</tr>

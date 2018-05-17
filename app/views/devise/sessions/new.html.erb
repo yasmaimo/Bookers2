@@ -6,22 +6,26 @@
       </div>
 
       <div class="col-4 mt-5">
-        <p class="h2 text-center">ユーザーログイン</p>
-        <p class="h4 text-center">ユーザー名と<br>パスワードを入力してください。</p>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <p class="h2 font-secondary font-weight-bold text-center"><i class="fa fa-sign-in mr-1 text-info"></i>ログイン</p>
+        <p class="text-center">ユーザー名と<br>パスワードを入力してください。</p>
         <%= devise_error_messages! %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div>
           <%= f.label :name %>
           <%= f.text_field :name, autofocus: true, class:"form-control", placeholder:"ユーザーネーム"%>
         </div>
-        <div>
+        <div class="mt-3">
           <%= f.label :password %>
           <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputEmail", placeholder:"パスワード" %>
         </div>
-          <%= f.submit "サインイン", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
-          <% end %>
+        <p class="text-center"><%= f.submit "ログイン", class:"btn btn-lg btn-info mt-4" %></p>
+        <% end %>
 
-          <%= render "devise/shared/links" %>
+        <p class="text-center mt-4">
+          <%= link_to new_user_registration_path, method: :get do %>
+          <span class="btn btn-sm btn-dark"><i class="fa fa-user-plus mr-1 text-white"></i>サインアップ画面へ</span>
+          <% end %>
+        </p>
 
         </div>
       </div>
