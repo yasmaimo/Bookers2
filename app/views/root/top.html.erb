@@ -1,8 +1,23 @@
-<div class="main-container">
-    <p class="display-2 font-weight-bold text-dark" style="letter-spacing: 0.02em;">ようこそ Bookers へ！</p>
+<div class="container main-container">
+	<div class="row">
+		<div class="col-12 text-center">
+			<p class="display-2 font-weight-bold text-dark" style="letter-spacing: 0.02em;">ようこそ Bookers へ！</p>
 
-    <p class="pt-2 h5 font-weight-bold text-secondary" style="letter-spacing: 0.03em;">Bookersでは、さまざまな書籍に関するあなたの意見や印象を共有し交換することができます</p>
+			<p class="pt-2 h5 font-weight-bold text-secondary" style="letter-spacing: 0.03em;">Bookersでは、さまざまな書籍に関するあなたの意見や印象を共有し交換することができます</p>
+			<p class="mt-5">
+				<%= link_to about_path, method: :get do %>
+				<span class="h3 font-weight-bold text-info">Bookersとは?<i class="fa fa-arrow-circle-right pl-1 text-info"></i></span>
+				<% end %>
+			</p>
+			<p>
+				<%= link_to new_user_registration_path, method: :get do %>
+				<span class="start-btn btn-info rounded mr-3"><i class="fa fa-user-plus pr-1 text-white"></i>Sign up</span>
+				<% end %>
 
-    <%= link_to "Log in", new_user_session_path, class: 'start-btn btn-info rounded' %>
-    <%= link_to "Sign up", new_user_registration_path, class: 'start-btn btn-info rounded' %>
+				<%= link_to new_user_session_path, method: :get do %>
+				<span class="start-btn btn-info rounded ml-3"><i class="fa fa-sign-in pr-1 text-white"></i>Log in</span>
+				<% end %>
+			</p>
+		</div>
+    </div>
 </div>

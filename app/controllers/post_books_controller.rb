@@ -15,9 +15,13 @@ class PostBooksController < ApplicationController
   end
 
   def edit
-    @post_book = PostBook.find(params[:id])
-    if @post_book.user.id == current_user.id
-      render 'edit'
+    if PostBook.exists?(params[:id])
+      @post_book = PostBook.find(params[:id])
+      if @post_book.user.id == current_user.id
+        render 'edit'
+      else
+        redirect_to user_path(current_user.id)
+      end
     else
       redirect_to user_path(current_user.id)
     end
@@ -35,14 +39,14 @@ class PostBooksController < ApplicationController
     post_book = PostBook.find(params[:id])
     post_book.update(post_book_params)
     redirect_to post_book_path(post_book)
-    flash[:updated] = "感想を変更しました"
+    flash[:updated] = "変更を保存しました"
   end
 
   def destroy
     post_book = PostBook.find(params[:id])
     post_book.destroy
     redirect_to post_books_path
-    flash[:destroyed] = "感想を削除しました"
+    flash[:destroyed] = "投稿を削除しました"
   end
 
   def index
@@ -51,9 +55,13 @@ class PostBooksController < ApplicationController
   end
 
   def show
-    @post = PostBook.new
-    @post_book = PostBook.find(params[:id])
-    @post_comment = PostComment.new
+    if PostBook.exists?(params[:id])
+      @post = PostBook.new
+      @post_book = PostBook.find(params[:id])
+      @post_comment = PostComment.new
+    else
+      redirect_to user_path(current_user.id)
+    end
   end
 
   private

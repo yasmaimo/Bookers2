@@ -19,21 +19,37 @@
 			<div class="col-8">
 			<% if user_signed_in? %>
 				<nav>
-					<ul class="nav justify-content-end align-items-center" style="height: 70px;">
-						<li class="nav-item nav-li"><%= link_to 'Home', user_path(current_user.id) %></li>
-						<li class="nav-item nav-li"><%= link_to "Users", users_path %></li>
-						<li class="nav-item nav-li"><%= link_to "Books", post_books_path %></li>
-						<li class="nav-item nav-li"><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+					<ul class="nav justify-content-end align-items-center" style="height: 70px; text-decoration: none;">
+						<%= link_to user_path(current_user.id), method: :get do %>
+							<li class="nav-item nav-li"><i class="fa fa-home mr-1 text-white"></i>Home</li>
+						<% end %>
+						<%= link_to users_path, method: :get do %>
+							<li class="nav-item nav-li"><i class="fa fa-users mr-1 text-white"></i>Users</li>
+						<% end %>
+						<%= link_to post_books_path, method: :get do %>
+							<li class="nav-item nav-li"><i class="fa fa-book mr-1 text-white"></i>Books</li>
+						<% end %>
+						<%= link_to destroy_user_session_path, method: :delete do %>
+							<li class="nav-item nav-li"><i class="fa fa-sign-out mr-1 text-white"></i>logout</li>
+						<% end %>
 					</ul>
 				</nav>
 
 			<% else %>
 				<nav>
 					<ul class="nav justify-content-end align-items-center">
-						<li class="nav-item nav-li"><%= link_to "Home", top_path %></li>
-						<li class="nav-item nav-li"><%= link_to "About", about_path %></li>
-						<li class="nav-item nav-li"><%= link_to "sign up", new_user_registration_path %></li>
-						<li class="nav-item nav-li"><%= link_to "login", new_user_session_path %></li>
+						<%= link_to top_path, method: :get do %>
+							<li class="nav-item nav-li"><i class="fa fa-home mr-1 text-white"></i>Home</li>
+						<% end %>
+						<%= link_to about_path, method: :get do %>
+							<li class="nav-item nav-li"><i class="fa fa-gg mr-1 text-white"></i>About</li>
+						<% end %>
+						<%= link_to new_user_registration_path, method: :get do %>
+							<li class="nav-item nav-li"><i class="fa fa-user-plus mr-1 text-white"></i>sign up</li>
+						<% end %>
+						<%= link_to new_user_session_path, method: :get do %>
+							<li class="nav-item nav-li"><i class="fa fa-sign-in mr-1 text-white"></i>login</li>
+						<% end %>
 					</ul>
 				</nav>
 			<% end %>

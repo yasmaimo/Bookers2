@@ -1,18 +1,18 @@
 <div class="mb-4 pl-4 col-3">
-	<p class="h2 text-center text-secondary">User info</p>
+	<p class="h2 text-center text-secondary"><i class="fa fa-info-circle text-info mr-1"></i>User info</p>
 	<div class="text-center my-3">
-		<%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", class:"text-center rounded-circe mw-100" %>
+		<%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", class:"text-center rounded mw-100" %>
 	</div>
 	<div class="mb-2">
 		<table class="table ta info-table">
 			<tr>
-				<th class="bg-secondary rounded-top text-white">name</th>
+				<th class="bg-secondary rounded-top text-white"><i class="fa fa-user text-white mr-1"></i>name</th>
 			</tr>
 			<tr>
 				<td class="bg-light text-dark"><%= user.name %></td>
 			</tr>
 			<tr>
-				<th class="bg-secondary text-white">introduction</th>
+				<th class="bg-secondary text-white"><i class="fa fa-comment text-white mr-1"></i>introduction</th>
 			</tr>
 			<tr>
 				<td class="bg-light rounded_bottom text-dark"><%= user.introduction %></td>
@@ -20,11 +20,19 @@
 		</table>
 	</div>
 	<% if user.id == current_user.id %>
-		<p class="text-center"><%= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-outline-secondary text-center" %></p>
+		<%= link_to edit_user_path(current_user), method: :get do %>
+			<p class="text-center">
+				<span class="btn btn-info"><i class="fa fa-wrench text-white mr-1"></i>Edit profile</span>
+			</p>
+		<% end %>
 	<% else %>
-		<p class="text-center"><%= link_to "My Home", user_path(current_user), class: "btn btn-outline-secondary text-center" %></p>
+		<%= link_to user_path(current_user), method: :get do %>
+			<p class="text-center">
+				<%= attachment_image_tag current_user, :profile_image, fallback: "no_image.jpg", class:"rounded-circle mw-100", style: "width: 60px;" %><span class="btn btn-info ml-2"><i class="fa fa-home text-white mr-1"></i>My home</span>
+			</p>
+		<% end %>
 	<% end %>
-	<p class="h2 text-center text-secondary">NewBook</p>
+	<p class="h2 text-center text-secondary mt-5"><i class="fa fa-pencil text-success mr-1"></i>NewBook</p>
 	<div class="form-group text-center">
 		<%= form_for(post) do |f| %>
 

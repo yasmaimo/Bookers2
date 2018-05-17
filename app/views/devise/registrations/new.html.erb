@@ -6,22 +6,23 @@
       </div>
 
       <div class="col-4 mt-5">
-        <p class="h2 text-center">ユーザー登録</p>
-        <p class="h4 text-center">ユーザー名と<br>パスワードを入力してください。</p>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <p class="h2 font-secondary font-weight-bold text-center"><i class="fa fa-user-plus mr-1 text-info"></i>サインアップ</p>
+        <p class="text-center">ユーザー名と<br>パスワードを入力してください。</p>
         <%= devise_error_messages! %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <div>
-          <%= f.label :name %>
-          <%= f.text_field :name, autofocus: true, class:"form-control", placeholder:"ユーザーネーム"%>
+          <%= f.label :name%>
+          <%= f.text_field :name, autofocus: true, class:"form-control", placeholder:"ユーザーネーム*2~20文字"%>
         </div>
-        <div>
+        <div class="mt-3">
           <%= f.label :password %>
           <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputEmail", placeholder:"パスワード" %>
         </div>
-          <%= f.submit "ユーザー登録", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
-          <% end %>
 
-          <%= render "devise/shared/links" %>
+          <p class="text-center"><%= f.submit "サインアップ", class:"btn btn-lg btn-info mt-4" %></p>
+        <% end %>
+
+        <p class="text-center mt-4"><%= render "devise/shared/links" %></p>
 
         </div>
       </div>
