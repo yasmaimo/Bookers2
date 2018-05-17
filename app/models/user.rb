@@ -5,8 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [ :name ]
 
-  #belongs_to :post_book
-
   has_many :post_books
   has_many :post_comments, dependent: :destroy
 

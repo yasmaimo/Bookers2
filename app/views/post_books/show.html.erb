@@ -1,9 +1,13 @@
+<div style="height: 60px;">
+	<p class="flash-message text-danger"><%= flash[:created] %></p>
+</div>
+
 <div class="container mw-100">
 	<div class="row">
 		<%= render 'list/list', {post: @post, user: @post_book.user} %>
 		<div class="mb-4 pr-4 col-9">
 			<p class="h2 col-9 text-center text-secondary">Book detail</p>
-			<table class="table table-hover book-table">
+			<table class="table book-table">
 				<tbody>
 					<tr class="small">
 						<td class="columm-1 text-center">
@@ -13,7 +17,7 @@
 							</p>
 						</td>
 						<td class="columm-2">
-							<p><%= @post_book.title %></p>
+							<p class="h6 font-weight-bold"><%= @post_book.title %></p>
 							<p><%= @post_book.body %></p>
 						</td>
 						<td class="columm-3">
@@ -28,6 +32,39 @@
 					</tr>
 				</tbody>
 			</table>
+
+			<div class="col-9">
+				<p><%= @post_book.post_comments.count %>comments</p>
+			</div>
+				<% @post_book.post_comments.each do |post_comment| %>
+				<table class="table-sm book-table">
+					<tbody>
+						<tr class="small">
+							<td class="columm-1 text-center">
+								<%= attachment_image_tag post_comment.user, :profile_image, fallback: "no_image.jpg",:size =>'60x60' %>
+								<p class=" mt-1 font-weight-bold">
+								<%= post_comment.user.name %>
+								</p>
+							</td>
+							<td class="columm-2">
+								<p><%= post_comment.comment %></p>
+							</td>
+							<td class="columm-3">
+								<%= post_comment.created_at.strftime('%Y/%m/%d') %>
+								<p class="mt-5 text-center">
+								<%= link_to "Destroy", post_book_post_comments_path(@post_book.post_comments), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-outline-danger btn-sm" %>
+								</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<% end %>
+			<div class="col-12 text-right mb-3 fixed-bottom">
+				<%= form_for [@post_book,@post_comment] do |f| %>
+					<%= f.text_field :comment, class: "form-cotrol", placeholder: "Comment", rows:'5' %>
+					<%= f.submit "Post comment", class: "btn btn-outline-primary" %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>
