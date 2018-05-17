@@ -1,5 +1,6 @@
 <div style="height: 60px;">
-	<p class="flash-message text-danger"><%= flash[:created] %></p>
+	<p class="flash-message text-danger"><%= flash[:failed] %><%= flash[:destroyed] %></p>
+	<p class="flash-message text-primary"><%= flash[:updated] %></p>
 </div>
 
 <div class="container mw-100">
@@ -21,7 +22,8 @@
 							<p><%= @post_book.body %></p>
 						</td>
 						<td class="columm-3">
-							<%= @post_book.created_at.strftime('%Y/%m/%d') %>
+							<%= @post_book.created_at.strftime('%Y/%m/%d') %><br>
+							<%= @post_book.created_at.strftime('%H:%M') %>
 							<p class="mt-5 text-center">
 							<% if @post_book.user.id == current_user.id %>
 								<%= link_to "Edit", edit_post_book_path(@post_book), class: "btn btn-outline-primary btn-sm" %>
@@ -50,19 +52,24 @@
 								<p><%= post_comment.comment %></p>
 							</td>
 							<td class="columm-3">
-								<%= post_comment.created_at.strftime('%Y/%m/%d') %>
+								<%= post_comment.created_at.strftime('%Y/%m/%d') %><br>
+								<%= post_comment.created_at.strftime('%H:%M') %>
 								<p class="mt-5 text-center">
-								<%= link_to "Destroy", post_book_post_comments_path(@post_book.post_comments), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-outline-danger btn-sm" %>
+								<% if post_comment.user_id == current_user.id %>
+								<%= link_to "Destroy", post_book_post_comments_path(post_comment), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-outline-danger btn-sm" %>
+								<% end %>
 								</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				<% end %>
+			<div class="mt-5">
+			</div>
 			<div class="col-12 text-right mb-3 fixed-bottom">
 				<%= form_for [@post_book,@post_comment] do |f| %>
-					<%= f.text_field :comment, class: "form-cotrol", placeholder: "Comment", rows:'5' %>
-					<%= f.submit "Post comment", class: "btn btn-outline-primary" %>
+					<%= f.text_field :comment, class: "form-cotrol col-8", placeholder: "コメント *50文字まで", rows:'5' %>
+					<%= f.submit "Post", class: "btn-sm btn-outline-success col-1" %>
 				<% end %>
 			</div>
 		</div>

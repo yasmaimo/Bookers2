@@ -21,7 +21,6 @@ class PostBooksController < ApplicationController
     else
       redirect_to user_path(current_user.id)
     end
-
   end
 
   def create
@@ -29,20 +28,21 @@ class PostBooksController < ApplicationController
     @post_book.user_id = current_user.id
     @post_book.save
     redirect_to post_books_path
+    flash[:created] = "感想を投稿しました"
   end
 
   def update
     post_book = PostBook.find(params[:id])
     post_book.update(post_book_params)
     redirect_to post_book_path(post_book)
-    flash[:updated] = "Book was successfully updated."
+    flash[:updated] = "感想を変更しました"
   end
 
   def destroy
     post_book = PostBook.find(params[:id])
     post_book.destroy
     redirect_to post_books_path
-    flash[:destroyed] = "Book was successfully destroyed."
+    flash[:destroyed] = "感想を削除しました"
   end
 
   def index
@@ -53,7 +53,6 @@ class PostBooksController < ApplicationController
   def show
     @post = PostBook.new
     @post_book = PostBook.find(params[:id])
-    #@post_comments = PostComment.find(params[:id])
     @post_comment = PostComment.new
   end
 
@@ -67,7 +66,4 @@ class PostBooksController < ApplicationController
     params.require(:post_book).permit(:title, :body, :user_id)
   end
 
-  def post_comment_params
-    params.require(:post_comment).permit(:user_id, :post_book_id, :comment)
-  end
 end
