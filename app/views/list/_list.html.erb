@@ -19,7 +19,11 @@
 			</tr>
 		</table>
 	</div>
-	<p class="text-center"><%= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-outline-secondary text-center" %></p>
+	<% if user.id == current_user.id %>
+		<p class="text-center"><%= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-outline-secondary text-center" %></p>
+	<% else %>
+		<p class="text-center"><%= link_to "My Home", user_path(current_user), class: "btn btn-outline-secondary text-center" %></p>
+	<% end %>
 	<p class="h2 text-center text-secondary">NewBook</p>
 	<div class="form-group text-center">
 		<%= form_for(post) do |f| %>

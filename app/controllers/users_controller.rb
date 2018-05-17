@@ -9,12 +9,15 @@ class UsersController < ApplicationController
 
   def show
    	@user = User.find(params[:id])
-  	@post_books = @user.post_books.page(params[:page])
+  	@post_book = @user.post_books.page(params[:page])
   	@post = PostBook.new
   end
 
   def edit
     @user = User.find(params[:id])
+    if @user.id != current_user.id
+      redirect_to edit_user_path(current_user.id)
+    end
   end
 
   def update

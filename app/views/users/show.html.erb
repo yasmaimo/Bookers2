@@ -26,10 +26,10 @@
 					</tr>
 				</thead>
 
-				<% @post_books.each do |post_book| %>
+				<% @post_book.each do |post_book| %>
 				<tbody>
 					<tr class="small">
-						<td class="text-truncate columm-1"><%= link_to post_book.title, post_book_path(@user) %></td>
+						<td class="text-truncate columm-1"><%= link_to post_book.title, post_book_path(post_book.id) %></td>
 						<td class="text-truncate columm-2"><%= post_book.body %></td>
 						<td class="text-truncate columm-3"><%= post_book.created_at.strftime('%Y/%m/%d') %></td>
 					</tr>
