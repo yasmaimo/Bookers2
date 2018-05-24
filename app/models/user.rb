@@ -15,6 +15,9 @@ class User < ApplicationRecord
   validates :name, uniqueness: true
   validates :name, length: { in: 2..20 }
   validates :introduction, length: { maximum: 50 }
+  validates :password, length: { in: 6..16 }, on: :create
+  validates :password, length: { in: 6..16 }, on: :create
+  validates :password, length: { in: 6..16 }, on: :update, allow_blank: true
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

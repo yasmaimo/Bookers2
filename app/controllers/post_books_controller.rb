@@ -1,19 +1,6 @@
 class PostBooksController < ApplicationController
   before_action :authenticate_user!
 
-  def after_sign_in_path_for(resource)
-     user_path
-  end
-
-  def after_sign_out_path_for(resource)
-     top_path
-  end
-
-  def new
-    @post = PostBook.new
-    @post_books = PostBook.all
-  end
-
   def edit
     if PostBook.exists?(params[:id])
       @post_book = PostBook.find(params[:id])
@@ -50,7 +37,7 @@ class PostBooksController < ApplicationController
   end
 
   def index
-    @post_books = PostBook.all
+    @post_books = PostBook.page(params[:page]).reverse_order
     @post = PostBook.new
   end
 
@@ -65,10 +52,6 @@ class PostBooksController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image, :user_id)
-  end
 
   def post_book_params
     params.require(:post_book).permit(:title, :body, :user_id)
