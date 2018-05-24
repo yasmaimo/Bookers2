@@ -16,7 +16,7 @@
         </div>
         <div class="mt-3">
           <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputEmail", placeholder:"パスワード" %>
+          <%= f.password_field :password, autocomplete: "off", class:"form-control", id:"inputEmail", placeholder:"パスワード*6~16文字" %>
         </div>
 
           <p class="text-center"><%= f.submit "サインアップ", class:"btn btn-lg btn-info mt-4" %></p>
@@ -25,6 +25,10 @@
         <p class="text-center mt-4"><%= render "devise/shared/links" %></p>
 
         </div>
+      </div>
+
+      <div class="col-4">
+
       </div>
     </div>
   </div>

@@ -7,7 +7,7 @@
 		<%= render 'list/list', {post: @post, user: current_user} %>
 
 		<div class="mb-4 pr-4 col-9">
-			<p class="h2 col-9 text-center text-secondary"><i class="fa fa-users mr-1"></i>Users</p>
+			<p class="h2 text-center text-secondary"><i class="fa fa-users mr-1"></i>Users</p>
 			<table class="table table-hover book-table">
 				<thead>
 					<tr class="bg-info">
@@ -19,14 +19,18 @@
 
 				<% @users.each do |user| %>
 				<tbody>
-					<tr class="small">
-						<td class="text-truncate columm-1"><%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg",class: "mw-100" ,style: "width: 40px;" %></td>
+					<tr class="small row-height">
+						<td class="text-truncate columm-1"><%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg",class: "mw-100" ,style: "max-width: 40px; max-height: 40px;" %></td>
 						<td class="text-truncate columm-2"><%= user.name %></td>
 						<td class="text-truncate columm-3"><%= link_to "show",user_path(user) %></td>
 					</tr>
 				</tbody>
 				<% end %>
 			</table>
+
+			<p>
+				<%= paginate @users, class: "pagenate text-center" %>
+			</p>
 		</div>
 	</div>
 </div>

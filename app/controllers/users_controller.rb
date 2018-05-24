@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  	@users = User.all
+  	@users = User.page(params[:page]).reverse_order
     @post = PostBook.new
   end
 
@@ -41,10 +41,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
-  end
-
-  def post_book_params
-    params.require(:post_book).permit(:title, :body, :user_id)
   end
 
 end

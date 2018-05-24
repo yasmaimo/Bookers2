@@ -8,7 +8,7 @@
       <div class="col-4 mt-5">
         <p class="h2 font-secondary font-weight-bold text-center"><i class="fa fa-sign-in mr-1 text-info"></i>ログイン</p>
         <p class="text-center">ユーザー名と<br>パスワードを入力してください。</p>
-        <%= devise_error_messages! %>
+
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div>
           <%= f.label :name %>
@@ -26,8 +26,10 @@
           <span class="btn btn-sm btn-dark"><i class="fa fa-user-plus mr-1 text-white"></i>サインアップ画面へ</span>
           <% end %>
         </p>
+      </div>
 
-        </div>
+      <div class="col-4">
+
       </div>
     </div>
   </div>

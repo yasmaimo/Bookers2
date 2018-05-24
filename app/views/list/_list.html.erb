@@ -1,7 +1,7 @@
 <div class="mb-4 pl-4 col-3">
 	<p class="h2 text-center text-secondary"><i class="fa fa-info-circle text-info mr-1"></i>User info</p>
 	<div class="text-center my-3">
-		<%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", class:"text-center rounded mw-100" %>
+		<%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", class:"text-center rounded mw-100", style: "max-height: 230px;" %>
 	</div>
 	<div class="mb-2">
 		<table class="table ta info-table">
@@ -28,7 +28,7 @@
 	<% else %>
 		<%= link_to user_path(current_user), method: :get do %>
 			<p class="text-center">
-				<%= attachment_image_tag current_user, :profile_image, fallback: "no_image.jpg", class:"rounded-circle mw-100", style: "width: 60px;" %><span class="btn btn-info ml-2"><i class="fa fa-home text-white mr-1"></i>My home</span>
+				<%= attachment_image_tag current_user, :profile_image, fallback: "no_image.jpg", class:"rounded-circle mw-100", style: "max-width: 50px; max-height: 50px;" %><span class="btn btn-info ml-2"><i class="fa fa-home text-white mr-1"></i>My home</span>
 			</p>
 		<% end %>
 	<% end %>

@@ -48,6 +48,10 @@ body {
 	font-weight: bold;
 }
 
+.row-height {
+	height: 65px;
+}
+
 /*-- top(トップ画面) --*/
 
 .main-container{
@@ -89,13 +93,6 @@ body {
 .columm-3 {
 	width: 25%;
 	overflow: hidden;
-}
-
-/*-- edit_post_book(本編集) --*/
-
-.edit-container {
-	width: 500px;
-	margin: 0 auto;
 }
 
 /*-- post_book_show(本詳細) --*/
