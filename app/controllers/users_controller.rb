@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user.id)
+      flash[:profile_updated] = "プロフィールの変更を保存しました"
     else
       render 'edit'
     end
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction, :profile_image)
+    params.require(:user).permit(:name, :introduction, :profile_image, :email)
   end
 
 end
