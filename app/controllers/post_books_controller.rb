@@ -17,16 +17,23 @@ class PostBooksController < ApplicationController
   def create
     @post_book = PostBook.new(post_book_params)
     @post_book.user_id = current_user.id
-    @post_book.save
-    redirect_to post_books_path
-    flash[:created] = "感想を投稿しました"
+    if @post_book.save
+      redirect_to post_books_path
+      flash[:created] = "感想を投稿しました"
+    else
+      redirect_to post_books_path
+      flash[:create_failed] = "20文字までのタイトルと200文字までの感想を入力してください"
+    end
   end
 
   def update
-    post_book = PostBook.find(params[:id])
-    post_book.update(post_book_params)
-    redirect_to post_book_path(post_book)
-    flash[:updated] = "変更を保存しました"
+    @post_book = PostBook.find(params[:id])
+    if @post_book.update(post_book_params)
+      redirect_to post_book_path(@post_book)
+      flash[:updated] = "変更を保存しました"
+    else
+      render 'edit'
+    end
   end
 
   def destroy

@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: ユーザーネーム
+        password: パスワード
+        email: メールアドレス
+        introduction: 自己紹介
+
+    models:
+      post_book: 感想
+    attributes:
+      post_book:
+        title: タイトル
+        body: 本文

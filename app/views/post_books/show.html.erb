@@ -1,5 +1,9 @@
 <div style="height: 60px;">
-	<p class="flash-message text-danger"><%= flash[:failed] %><%= flash[:destroyed] %></p>
+	<p class="flash-message text-danger">
+		<%= flash[:failed] %>
+		<%= flash[:destroyed] %>
+		<%= flash[:update_failed] %>
+	</p>
 	<p class="flash-message text-primary"><%= flash[:updated] %></p>
 	<p class="flash-message text-success"><%= flash[:created] %></p>
 </div>
@@ -28,7 +32,7 @@
 							<p class="mt-2">
 							<% if @post_book.user.id == current_user.id %>
 								<%= link_to "Edit", edit_post_book_path(@post_book), class: "btn btn-outline-primary btn-sm" %>
-								<%= link_to "Destroy", post_book_path(@post_book), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-outline-danger btn-sm" %>
+								<%= link_to "Destroy", post_book_path(@post_book), method: :delete, "data-confirm" => "投稿を削除しますか？", class: "btn btn-outline-danger btn-sm" %>
 							<% end %>
 							</p>
 						</td>
@@ -72,7 +76,7 @@
 								<%= post_comment.created_at.strftime('%H:%M') %>
 								<p class="mt-2">
 									<% if post_comment.user_id == current_user.id %>
-									<%= link_to "Destroy", post_book_post_comments_path(post_comment), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-outline-danger btn-sm" %>
+									<%= link_to "Destroy", post_book_post_comments_path(post_comment), method: :delete, "data-confirm" => "コメントを削除しますか？", class: "btn btn-outline-danger btn-sm" %>
 									<% end %>
 								</p>
 							</td>
