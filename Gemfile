@@ -64,3 +64,5 @@ gem "refile-mini_magick"
 gem 'kaminari'
 
 gem 'font-awesome-rails'
+
+gem 'rails-i18n'

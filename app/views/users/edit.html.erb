@@ -6,7 +6,7 @@
 		<div class="col-6">
 			<% if @user.errors.any? %>
 				<div class="alert alert-danger mt-4">
-					<h2><%= pluralize(@user.errors.count, "error") %></h2>
+					<h2><%= pluralize(@user.errors.count, "件のエラー") %></h2>
 					<ul>
 					<% @user.errors.full_messages.each do |message| %>
 						<li><%= message %></li>
@@ -26,6 +26,9 @@
 
 				<label for="form-title">Name</label>
 				<%= f.text_field :name, class: "form-control mb-2", id: "form-title", placeholder: "ユーザー名" %>
+
+				<label for="form-email">email</label>
+				<%= f.email_field :email, class: "form-control mb-2", id: "form-email", placeholder: "メールアドレス" %>
 
 				<label for="form-introduction">Introduction</label>
 				<%= f.text_area :introduction, class: "form-control", id: "form-introduction", placeholder: "ここに自己紹介を入れてください *50文字まで" %>
